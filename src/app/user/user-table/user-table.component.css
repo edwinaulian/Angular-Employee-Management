@@ -1,0 +1,49 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 4%;
+  }
+  
+  main {
+    width: 95%;
+    margin: 1rem auto ;
+}
+
+.edwin-edit{
+  color: rgba(255, 255, 0, 0.837);
+}
+
+.edwin-row{
+  word-break: break-all;
+}
+
+.edwin-div {
+  margin-top: -3%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}

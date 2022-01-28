@@ -1,0 +1,17 @@
+.example-full-width, .example-form {
+    width: 100%;
+}
+
+main {
+    width: 90%;
+    margin: 1rem auto ;
+}
+
+.edwin-header {
+    font-weight: bold;  
+    font-size: 150%;
+}
+
+mat-card {
+    background-color: cornsilk;
+}

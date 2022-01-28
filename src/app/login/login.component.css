@@ -1,0 +1,15 @@
+.example-full-width, .example-form {
+    width: 100%;
+}
+
+@media screen and (min-width: 0px) and (max-width: 599.98px) {
+    .example-full-width, .example-form {
+        width: 75%;
+    }
+}
+
+main {
+    width: 50%;
+    margin: 1rem auto ;
+    margin-top: 10rem;
+}

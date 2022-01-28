@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <span class="edwin-span">Employee Management</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="deviceLg || deviceMd" mat-button class="edwin-button" (click)="goToAddUser()">Add Employee</button>
+    <button *ngIf="deviceLg || deviceMd" mat-button class="edwin-button" (click)="goToListUser()">List Employee</button>
+    <button *ngIf="deviceLg || deviceMd" mat-button class="edwin-button" (click)="goToContact()">Contact</button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button *ngIf="deviceXs || deviceSm" mat-menu-item (click)="goToAddUser()">
+            <mat-icon>add</mat-icon>
+            Add Employee
+        </button>
+        <button *ngIf="deviceXs || deviceSm" mat-menu-item (click)="goToListUser()">
+            <mat-icon>list</mat-icon>
+            List Employee
+        </button>
+        <button *ngIf="deviceXs || deviceSm" mat-menu-item (click)="goToContact()">
+            <mat-icon>account_box</mat-icon>
+            Contact
+        </button>
+        <button mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span (click)="logout()">Logout</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

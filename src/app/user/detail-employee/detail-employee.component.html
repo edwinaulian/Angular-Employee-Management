@@ -1,0 +1,20 @@
+<app-header [deviceLg]="deviceLg" [deviceXs]="deviceXs" [deviceSm]="deviceSm" [deviceMd]="deviceMd"></app-header>
+<main>
+    <mat-card class="main-card">
+        <mat-card-header class="edwin-header">Detail Employee</mat-card-header>
+        <mat-card-content>
+            <mat-card>User Name     : {{ detailDataEmployee?.username }}</mat-card>
+            <mat-card>First Name    : {{ detailDataEmployee?.firstName }}</mat-card>
+            <mat-card>Last Name     : {{ detailDataEmployee?.lastName }}</mat-card>
+            <mat-card>Email         : {{ detailDataEmployee?.email }}</mat-card>
+            <mat-card>Birth Date    : {{ detailDataEmployee?.birthDate | date}}</mat-card>
+            <mat-card>Basic Salary  : {{ detailDataEmployee?.basicSalary | currency:"IDR":"Rp" }}</mat-card>
+            <mat-card>Status        : {{ detailDataEmployee?.status }}</mat-card>
+            <mat-card>Group         : {{ detailDataEmployee?.group }}</mat-card>
+            <mat-card>Description   : {{ detailDataEmployee?.description }}</mat-card>
+        </mat-card-content>
+        <mat-card-actions [align]="'end'">
+            <button mat-raised-button color="primary" (click)="onBack()">Ok</button>
+        </mat-card-actions>
+    </mat-card>
+</main>

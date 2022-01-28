@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Add Employee</h1>
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="employeesForm">
+        <mat-form-field appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="username" placeholder="ng.Edwin Auliano" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="ng.Edwin" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="ng.Auliano" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" pattern=".+@gmail\.com" matInput formControlName="email" [errorStateMatcher]="matcher"
+                placeholder="Ex. pat@example.com">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Birth Date</mat-label>
+            <input matInput formControlName="birthDate" [matDatepicker]="picker" [max]="today">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Basic Salary</mat-label>
+            <input matInput formControlName="basicSalary" type="number" placeholder="999999999" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" placeholder="Category">
+                <mat-option value="Single">Single</mat-option>
+                <mat-option value="Maried">Maried</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Group</mat-label>
+            <mat-select formControlName="group" [(ngModel)]="selectedValue"  [ngModelOptions]="{standalone: true}" SelectHarnessFilters={} placeholder="Category">
+                <input [(ngModel)]="searchTxt"  [ngModelOptions]="{standalone: true}" class="edwin-search" matInput placeholder="search">
+                <mat-option *ngFor="let item of groupOption | search : searchTxt" [value]="item.value">{{item.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" placeholder="ng.Hello this is a description"></textarea>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSave()">{{actionButtonDinamic}}</button>
+</div>
