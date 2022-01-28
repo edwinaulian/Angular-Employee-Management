@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 2. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-3. Run `json-server --watch db.json` for a json server for REST API in localhost for get 100> Dummy data
+3. Run  `npm run server` or `json-server --watch db.json` for a json server for REST API in localhost for get 100> Dummy data
 if port is exsit / running you can run in another port. like this
 Run `json-server --watch db.json --port 3001`
 
