@@ -103,7 +103,7 @@ export class AddUserDialogComponent implements OnInit {
   }
 
   editDataEmployee(rawData) {
-    this.userServices.editDataEmployee(rawData, this.editData.id,).subscribe({
+    this.userServices.editDataEmployee(rawData, this.editData.id).subscribe({
       next: (res) => {
         this.showAlert('Success Edit Data Employee');
         this.resetDataValue();
