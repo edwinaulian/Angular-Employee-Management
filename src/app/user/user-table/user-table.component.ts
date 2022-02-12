@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { AlertConfirmDialogComponent } from 'src/app/common/component/alert-confirm.component';
 import { AlertService } from 'src/app/common/service/alert-service';
 import { AddUserDialogComponent } from '../dialog/dialog-user.component';
 import { UserService } from '../user-service';
@@ -59,16 +60,11 @@ export class UserTableComponent implements OnInit {
     })
   }
 
-  onDeleted(id: number) {
-    this.userServie.deleteDataEmployee(id).subscribe({
-      next: (res) => {
-        this.alertService.showAlertSuccess('Data has been deleted');
-        this.getAllEmployee();
-        this.router.navigate(["/employees"]);
-      }, error: (err) => {
-        alert("Error while deleting the data!");
-      }
-    })
+  onDeleted(row: any) {
+      this.dialog.open(AlertConfirmDialogComponent, {
+        width: '50%',
+        data: row
+      })
   }
 
   applyFilter(event: Event) {

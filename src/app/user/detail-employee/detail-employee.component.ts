@@ -4,7 +4,7 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-dialog-addUser',
+  selector: 'app-detail-dialog',
   templateUrl: './detail-employee.component.html',
   styleUrls: ['./detail-employee.component.css']
 })
@@ -39,7 +39,6 @@ export class DetailEmployeeComponent implements OnInit {
 
   onBack() {
     this.router.navigate(["/employees"]);
-
   }
 
 }

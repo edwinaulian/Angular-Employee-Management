@@ -7,16 +7,18 @@ import { Injectable } from "@angular/core";
 
 export class UserService {
 
+    baseUrl = 'http://localhost:3001/employees/';
+
     constructor(
         private http: HttpClient
     ) { }
 
     postNewDataEmployee(data: any) {
-        return this.http.post<any>("http://localhost:3001/employees/", data);
+        return this.http.post<any>(this.baseUrl, data);
     }
 
     getDataEmployee() {
-        return this.http.get<any>("http://localhost:3001/employees/");
+        return this.http.get<any>(this.baseUrl);
     }
 
     getDataEmployeeByFilter(dataFilter: any) {
@@ -24,10 +26,10 @@ export class UserService {
     }
 
     editDataEmployee(data: any, id: number) {
-        return this.http.put<any>("http://localhost:3001/employees/" + id, data);
+        return this.http.put<any>(this.baseUrl + id, data);
     }
 
     deleteDataEmployee(id: number) {
-        return this.http.delete<any>("http://localhost:3001/employees/" + id);
+        return this.http.delete<any>(this.baseUrl + id);
     }
 }

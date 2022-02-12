@@ -1271,6 +1271,18 @@
       "group": "IT Departement",
       "description": "hello guys",
       "id": 111
+    },
+    {
+      "username": "Davie",
+      "firstName": "Davie",
+      "lastName": "Auliani",
+      "email": "davi.aulani@gmail.com",
+      "birthDate": "2022-02-01T17:00:00.000Z",
+      "basicSalary": 12000000,
+      "status": "Single",
+      "group": "IT Departement",
+      "description": "hello",
+      "id": 112
     }
   ],
   "comments": [

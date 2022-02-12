@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { AddUserDialogComponent } from './user/dialog/dialog-user.component';
 import { UserTableComponent } from './user/user-table/user-table.component';
 import { DetailEmployeeComponent } from './user/detail-employee/detail-employee.component';
+import { AlertConfirmDialogComponent } from './common/component/alert-confirm.component';
 
 //angular material
 import { MatInputModule } from '@angular/material/input';
@@ -62,6 +63,7 @@ import { ToastrModule } from 'ngx-toastr';
     AddUserDialogComponent,
     DetailEmployeeComponent,
     SearchPipe,
+    AlertConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
