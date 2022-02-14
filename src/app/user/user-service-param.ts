@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { UserService } from "./user-service";
 import { Subscription } from 'rxjs';
+import { appGlobalConstants } from "../common/actionType/global-constant";
+import * as _ from 'lodash';
 @Injectable({
     providedIn: 'root'
 })
@@ -10,16 +11,14 @@ export class UserParamService {
     filterValue: any;
     mediaSub: Subscription;
 
-    constructor(
-        private userService: UserService
-    ) { }
+    constructor() { }
 
     isNotExsist(obj) {
-        return obj === undefined || obj === "";
+        return _.isEqual(obj, appGlobalConstants.UNDEFINED_VALUE) || _.isEqual(obj, appGlobalConstants.EMPLTY_VALUE);
     }
 
     cleanDataFilter() {
-        this.filterValue = "";
+        this.filterValue = appGlobalConstants.EMPLTY_VALUE;
     }
 
 }

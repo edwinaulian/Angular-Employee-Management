@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../common/service/auth.service';
 import { AddUserDialogComponent } from '../user/dialog/dialog-user.component';
 import { UserParamService } from '../user/user-service-param';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(AddUserDialogComponent, {
       width: '100%'
     }).afterClosed().subscribe(val => {
-      if (val === "save") {
+      if (_.isEqual(val, "save")) {
         window.location.reload();
       }
     })

@@ -1283,6 +1283,18 @@
       "group": "IT Departement",
       "description": "hello",
       "id": 112
+    },
+    {
+      "username": "Leonardo decalpiko",
+      "firstName": "Leonardo",
+      "lastName": "decalpiko",
+      "email": "decalpiko.leo@gmail.com",
+      "birthDate": "2004-06-13T17:00:00.000Z",
+      "basicSalary": 9000000,
+      "status": "Single",
+      "group": "Marketing Credit",
+      "description": "hello decalpiko",
+      "id": 113
     }
   ],
   "comments": [

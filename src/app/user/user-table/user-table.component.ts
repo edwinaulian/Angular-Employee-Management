@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { appGlobalConstants } from 'src/app/common/actionType/global-constant';
 import { AlertConfirmDialogComponent } from 'src/app/common/component/alert-confirm.component';
-import { AlertService } from 'src/app/common/service/alert-service';
 import { AddUserDialogComponent } from '../dialog/dialog-user.component';
 import { UserService } from '../user-service';
 import { UserParamService } from '../user-service-param';
@@ -29,7 +29,6 @@ export class UserTableComponent implements OnInit {
     private userServie: UserService,
     private router: Router,
     private userParamService: UserParamService,
-    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class UserTableComponent implements OnInit {
   refresh() {
     this.getAllEmployee();
     this.userParamService.cleanDataFilter();
-    this.dataValueFilter = "";
+    this.dataValueFilter = appGlobalConstants.EMPLTY_VALUE;
   }
 
   clickedRows(row: any) {
@@ -61,10 +60,10 @@ export class UserTableComponent implements OnInit {
   }
 
   onDeleted(row: any) {
-      this.dialog.open(AlertConfirmDialogComponent, {
-        width: '50%',
-        data: row
-      })
+    this.dialog.open(AlertConfirmDialogComponent, {
+      width: '50%',
+      data: row
+    })
   }
 
   applyFilter(event: Event) {
@@ -73,9 +72,7 @@ export class UserTableComponent implements OnInit {
     this.userServie.getDataEmployeeByFilter(filterValue).subscribe({
       next: (res) => {
         this.dataSource.filter = filterValue.trim().toLowerCase();
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.getFilterValue(res);
       }, error: (err) => {
         alert("Error while fetching the data Employee!")
       }
@@ -85,9 +82,7 @@ export class UserTableComponent implements OnInit {
   getByFilter(value) {
     this.userServie.getDataEmployeeByFilter(value).subscribe({
       next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.getFilterValue(res);
       }, error: (err) => {
         alert("Error while fetching the data Employee!")
       }
@@ -97,13 +92,17 @@ export class UserTableComponent implements OnInit {
   getAllEmployee() {
     this.userServie.getDataEmployee().subscribe({
       next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.getFilterValue(res);
       }, error: (err) => {
         alert("Error while fecthing the data Employee!")
       }
     })
+  }
+
+  getFilterValue(res) {
+    this.dataSource = new MatTableDataSource(res);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 }

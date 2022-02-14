@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { appGlobalConstants } from '../actionType/global-constant';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +32,7 @@ export class AuthService {
     }
 
     isAdminUser(): boolean {
-        if (this.userName == 'admin') {
+        if (_.isEqual(this.userName, 'admin')) {
             return true;
         }
         return false;
@@ -38,7 +40,7 @@ export class AuthService {
 
     logoutUser(): void {
         this.isloggedIn = false;
-        this.loginStatus = "";
+        this.loginStatus = appGlobalConstants.EMPLTY_VALUE;
     }
 
 } 

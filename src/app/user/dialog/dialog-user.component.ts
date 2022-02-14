@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Valida
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { appGlobalConstants } from 'src/app/common/actionType/global-constant';
 import { AlertService } from 'src/app/common/service/alert-service';
 import { UserService } from '../user-service';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -18,7 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class AddUserDialogComponent implements OnInit {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new FormControl(appGlobalConstants.EMPLTY_VALUE, [Validators.required, Validators.email]);
   today = new Date();
   matcher = new MyErrorStateMatcher();
   employeesForm: FormGroup;
@@ -59,15 +60,15 @@ export class AddUserDialogComponent implements OnInit {
 
   initFormGroup() {
     this.employeesForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      basicSalary: ['', Validators.required],
-      status: ['', Validators.required],
-      group: ['', Validators.required],
-      description: ['', Validators.required]
+      username: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      firstName: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      lastName: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      email: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      birthDate: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      basicSalary: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      status: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      group: [appGlobalConstants.EMPLTY_VALUE, Validators.required],
+      description: [appGlobalConstants.EMPLTY_VALUE, Validators.required]
     });
 
     if (this.editData) {
@@ -87,7 +88,7 @@ export class AddUserDialogComponent implements OnInit {
             this.resetDataValue();
             this.router.navigate(["/employees"]);
           }, error: () => {
-            alert("Error save data Employee!")
+            alert("Error save data Employee!");
           }
         })
       } else {

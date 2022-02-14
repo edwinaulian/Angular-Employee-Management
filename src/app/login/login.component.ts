@@ -4,6 +4,8 @@ import { AuthService } from '../common/service/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../common/service/alert-service';
+import { appGlobalConstants } from '../common/actionType/global-constant';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +16,8 @@ import { AlertService } from '../common/service/alert-service';
 export class LoginComponent implements OnInit {
   constructor(
     private alertService: AlertService,
-    private router: Router, 
-    private authService: AuthService, 
+    private router: Router,
+    private authService: AuthService,
     private mediaObserver: MediaObserver) { }
 
   showSpinner: boolean;
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   postLogin(loginForm) {
     this.authService.login(loginForm.value.username, loginForm.value.password).subscribe(data => {
-      if (this.retUrl != null) {
+      if (!_.isEqual(this.retUrl, appGlobalConstants.NULL_VALUE)) {
         this.router.navigate([this.retUrl]);
         this.alertService.showAlertSuccess(`Hello ${data}`);
         localStorage.setItem("login", data);
