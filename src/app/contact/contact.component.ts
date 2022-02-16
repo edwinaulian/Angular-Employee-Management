@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../common/service/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
+import { appNavigateTo } from '../common/actionType/global-constant';
 
 @Component({
   selector: 'app-contact',
@@ -37,7 +38,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logoutUser();
-    this.router.navigate(["/login"]);
+    this.router.navigate([appNavigateTo.LOGIN_PAGE]);
   }
 
 }

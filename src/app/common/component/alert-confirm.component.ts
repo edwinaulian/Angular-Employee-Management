@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/common/service/alert-service';
 import { UserService } from 'src/app/user/user-service';
+import { appMessagesAlert, appNavigateTo } from '../actionType/global-constant';
 
 @Component({
   selector: 'alert-confirm-dialog',
@@ -25,17 +26,17 @@ export class AlertConfirmDialogComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(["/employees"]);
+    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
   }
 
   ok() {
     this.userServices.deleteDataEmployee(this.rowData.id).subscribe({
       next: (res) => {
-        this.alertService.showAlertSuccess('Data has been deleted');
+        this.alertService.showAlertSuccess(appMessagesAlert.SUCESS_DELETED_DATA_EMPLOYEES);
         this.dialog.close();
-        this.router.navigate(["/employees"]);
+        this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
       }, error: (err) => {
-        alert("Error while deleting the data!");
+        alert(appMessagesAlert.ERROR_WHILE_DELETING_THE_DATA);
       }
     })
   }

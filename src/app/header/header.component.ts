@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../common/service/auth.service';
 import { AddUserDialogComponent } from '../user/dialog/dialog-user.component';
 import { UserParamService } from '../user/user-service-param';
+import { appNavigateTo } from '../common/actionType/global-constant';
 import * as _ from 'lodash';
 @Component({
   selector: 'app-header',
@@ -38,11 +39,11 @@ export class HeaderComponent implements OnInit {
 
   goToListUser() {
     this.userParamService.cleanDataFilter();
-    this.router.navigate(["/employees"]);
+    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
   }
 
   goToContact() {
-    this.router.navigate(["/contact"]);
+    this.router.navigate([appNavigateTo.CONTACT_PAGE]);
   }
 
   logout() {
@@ -52,7 +53,7 @@ export class HeaderComponent implements OnInit {
     keysToRemove.forEach(element => {
       localStorage.removeItem(element);
     });
-    this.router.navigate(["/login"]);
+    this.router.navigate([appNavigateTo.LOGIN_PAGE]);
   }
 
 }

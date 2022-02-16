@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { appGlobalConstants } from 'src/app/common/actionType/global-constant';
+import { appGlobalConstants, appMessagesAlert, appNavigateTo } from 'src/app/common/actionType/global-constant';
 import { AlertConfirmDialogComponent } from 'src/app/common/component/alert-confirm.component';
 import { AddUserDialogComponent } from '../dialog/dialog-user.component';
 import { UserService } from '../user-service';
@@ -44,7 +44,7 @@ export class UserTableComponent implements OnInit {
   clickedRows(row: any) {
     this.userParamService.dataEmployee = row;
     localStorage.setItem("dataEmployee", JSON.stringify(this.userParamService.dataEmployee));
-    this.router.navigate(["/detailEmployee"], { queryParams: { id: row.id } });
+    this.router.navigate([appNavigateTo.DETAIL_EMPLOYEE_PAGE], { queryParams: { id: row.id } });
   }
 
   onEdit(row: any) {
@@ -54,7 +54,7 @@ export class UserTableComponent implements OnInit {
     }).afterClosed().subscribe(value => {
       if (value === "edit") {
         this.getAllEmployee();
-        this.router.navigate(["/employees"]);
+        this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
       }
     })
   }
@@ -74,7 +74,7 @@ export class UserTableComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
         this.getFilterValue(res);
       }, error: (err) => {
-        alert("Error while fetching the data Employee!")
+        alert(appMessagesAlert.ERROR_WHILE_FETCHING_DATA);
       }
     })
   }
@@ -84,7 +84,7 @@ export class UserTableComponent implements OnInit {
       next: (res) => {
         this.getFilterValue(res);
       }, error: (err) => {
-        alert("Error while fetching the data Employee!")
+        alert(appMessagesAlert.ERROR_WHILE_FETCHING_DATA);
       }
     })
   }
@@ -94,7 +94,7 @@ export class UserTableComponent implements OnInit {
       next: (res) => {
         this.getFilterValue(res);
       }, error: (err) => {
-        alert("Error while fecthing the data Employee!")
+        alert(appMessagesAlert.ERROR_WHILE_FETCHING_DATA);
       }
     })
   }

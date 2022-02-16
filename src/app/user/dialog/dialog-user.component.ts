@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Valida
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { appGlobalConstants } from 'src/app/common/actionType/global-constant';
+import { appGlobalConstants, appMessagesAlert, appNavigateTo } from 'src/app/common/actionType/global-constant';
 import { AlertService } from 'src/app/common/service/alert-service';
 import { UserService } from '../user-service';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -84,15 +84,15 @@ export class AddUserDialogComponent implements OnInit {
       if (this.employeesForm.valid) {
         this.userServices.postNewDataEmployee(rawData).subscribe({
           next: (res) => {
-            this.showAlert('Success Add Data Employee');
+            this.showAlert(appMessagesAlert.SUCCESS_ADD_DATA_EMPLOYEES);
             this.resetDataValue();
-            this.router.navigate(["/employees"]);
+            this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
           }, error: () => {
-            alert("Error save data Employee!");
+            alert(appMessagesAlert.ERROR_SAVE_DATA_EMPLOYEES);
           }
         })
       } else {
-        this.alertService.showAlertInfo("All field has been required!");
+        this.alertService.showAlertInfo(appMessagesAlert.ALL_FIELD_HAS_BEEN_REQUIRED);
       }
     } else {
       this.editDataEmployee(rawData);
@@ -106,11 +106,11 @@ export class AddUserDialogComponent implements OnInit {
   editDataEmployee(rawData) {
     this.userServices.editDataEmployee(rawData, this.editData.id).subscribe({
       next: (res) => {
-        this.showAlert('Success Edit Data Employee');
+        this.showAlert(appMessagesAlert.SUCCESS_EDIT_DATE_EMPLOYEES);
         this.resetDataValue();
-        this.router.navigate(["/employees"]);
+        this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
       }, error: () => {
-        alert("Error edit data Employee!")
+        alert(appMessagesAlert.ERROR_EDIT_DATA_EMPLOYEES);
       }
     })
   }
@@ -122,6 +122,6 @@ export class AddUserDialogComponent implements OnInit {
 
   onCancel() {
     this.dialog.close();
-    this.router.navigate(["/employees"])
+    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE])
   }
 }

@@ -4,7 +4,7 @@ import { AuthService } from '../common/service/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../common/service/alert-service';
-import { appGlobalConstants } from '../common/actionType/global-constant';
+import { appGlobalConstants, appNavigateTo } from '../common/actionType/global-constant';
 import * as _ from 'lodash';
 
 @Component({
@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginForm.value.username, loginForm.value.password).subscribe(data => {
       if (!_.isEqual(this.retUrl, appGlobalConstants.NULL_VALUE)) {
         this.router.navigate([this.retUrl]);
-        this.alertService.showAlertSuccess(`Hello ${data}`);
+        this.alertService.showAlertSuccess(`Hello ${data}, Wellcome to EmpMa`);
         localStorage.setItem("login", data);
       } else {
-        this.router.navigate(['/login']);
+        this.router.navigate([appNavigateTo.LOGIN_PAGE]);
       }
     });
   }

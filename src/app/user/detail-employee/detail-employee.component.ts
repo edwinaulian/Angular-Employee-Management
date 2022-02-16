@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
+import { appNavigateTo } from 'src/app/common/actionType/global-constant';
 
 @Component({
   selector: 'app-detail-dialog',
@@ -38,7 +39,7 @@ export class DetailEmployeeComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(["/employees"]);
+    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
   }
 
 }
