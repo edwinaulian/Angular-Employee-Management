@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { AuthService } from '../common/service/auth.service';
 import { AddUserDialogComponent } from '../user/dialog/dialog-user.component';
 import { UserParamService } from '../user/user-service-param';
-import { appNavigateTo } from '../common/actionType/global-constant';
+import { appGlobalConstants, appNavigateTo } from '../common/actionType/global-constant';
 import * as _ from 'lodash';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logoutUser();
     this.userParamService.cleanDataFilter();
-    let keysToRemove = ["login", "dataEmployee"];
+    let keysToRemove = [appGlobalConstants.LOGIN, appGlobalConstants.DATA_EMPLOYEE];
     keysToRemove.forEach(element => {
       localStorage.removeItem(element);
     });

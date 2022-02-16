@@ -6,6 +6,7 @@ export const appGlobalConstants = {
     EMPLOYEES: "employees",
     CONTACT: "contact",
     LOGIN: "login",
+    DATA_EMPLOYEE: "dataEmployee",
 }
 
 export const appNavigateTo = {
