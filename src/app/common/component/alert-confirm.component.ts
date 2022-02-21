@@ -22,8 +22,7 @@ export class AlertConfirmDialogComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   cancel() {
     this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);

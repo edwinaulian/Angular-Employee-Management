@@ -78,7 +78,7 @@ export class UserTableComponent implements OnInit {
       }
     })
   }
-
+ 
   getByFilter(value) {
     this.userServie.getDataEmployeeByFilter(value).subscribe({
       next: (res) => {
