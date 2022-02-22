@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
-import { appNavigateTo } from 'src/app/common/actionType/global-constant';
+import { GlobalServiceParam } from 'src/app/common/service/global-param-service';
 
 @Component({
   selector: 'app-detail-dialog',
@@ -21,6 +21,7 @@ export class DetailEmployeeComponent implements OnInit {
   constructor(
     private router: Router,
     public mediaObserver: MediaObserver,
+    private globalServiceParam: GlobalServiceParam,
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +40,7 @@ export class DetailEmployeeComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
+    this.globalServiceParam.navigateToEmployeesPage();
   }
 
 }

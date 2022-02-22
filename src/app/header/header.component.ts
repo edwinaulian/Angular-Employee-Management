@@ -5,6 +5,7 @@ import { AuthService } from '../common/service/auth.service';
 import { AddUserDialogComponent } from '../user/dialog/dialog-user.component';
 import { UserParamService } from '../user/user-service-param';
 import { appGlobalConstants, appNavigateTo } from '../common/actionType/global-constant';
+import { GlobalServiceParam } from '../common/service/global-param-service';
 import * as _ from 'lodash';
 
 @Component({
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private globalServiceParam: GlobalServiceParam,
     private userParamService: UserParamService,
     private dialog: MatDialog) { }
 
@@ -40,7 +42,7 @@ export class HeaderComponent implements OnInit {
 
   goToListUser() {
     this.userParamService.cleanDataFilter();
-    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
+    this.globalServiceParam.navigateToEmployeesPage();
   }
 
   goToContact() {
@@ -54,7 +56,7 @@ export class HeaderComponent implements OnInit {
     keysToRemove.forEach(element => {
       localStorage.removeItem(element);
     });
-    this.router.navigate([appNavigateTo.LOGIN_PAGE]);
+    this.globalServiceParam.navigateToLoginPage();
   }
 
 }

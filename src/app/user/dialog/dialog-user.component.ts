@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { appGlobalConstants, appMessagesAlert, appNavigateTo } from 'src/app/common/actionType/global-constant';
 import { AlertService } from 'src/app/common/service/alert-service';
+import { GlobalServiceParam } from 'src/app/common/service/global-param-service';
 import { UserService } from '../user-service';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -35,6 +36,7 @@ export class AddUserDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userServices: UserService,
     private alertService: AlertService,
+    private globalServiceParam: GlobalServiceParam,
   ) {
   }
 
@@ -86,7 +88,7 @@ export class AddUserDialogComponent implements OnInit {
           next: (res) => {
             this.showAlert(appMessagesAlert.SUCCESS_ADD_DATA_EMPLOYEES);
             this.resetDataValue();
-            this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
+            this.globalServiceParam.navigateToEmployeesPage();
           }, error: () => {
             alert(appMessagesAlert.ERROR_SAVE_DATA_EMPLOYEES);
           }
@@ -108,7 +110,7 @@ export class AddUserDialogComponent implements OnInit {
       next: (res) => {
         this.showAlert(appMessagesAlert.SUCCESS_EDIT_DATE_EMPLOYEES);
         this.resetDataValue();
-        this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
+        this.globalServiceParam.navigateToEmployeesPage();
       }, error: () => {
         alert(appMessagesAlert.ERROR_EDIT_DATA_EMPLOYEES);
       }
@@ -122,6 +124,6 @@ export class AddUserDialogComponent implements OnInit {
 
   onCancel() {
     this.dialog.close();
-    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE])
+    this.globalServiceParam.navigateToEmployeesPage();
   }
 }

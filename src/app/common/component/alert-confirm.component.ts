@@ -1,10 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AlertService } from 'src/app/common/service/alert-service';
 import { UserService } from 'src/app/user/user-service';
-import { appMessagesAlert, appNavigateTo } from '../actionType/global-constant';
-
+import { appMessagesAlert } from '../actionType/global-constant';
+import { GlobalServiceParam } from '../service/global-param-service';
 @Component({
   selector: 'alert-confirm-dialog',
   templateUrl: './alert-confirm.component.html',
@@ -16,16 +15,15 @@ export class AlertConfirmDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public rowData: any,
     private dialog: MatDialogRef<any>,
-    private router: Router,
     private userServices: UserService,
     private alertService: AlertService,
-  ) {
-  }
+    private globalServiceParam: GlobalServiceParam,
+  ) { }
 
   ngOnInit(): void { }
 
   cancel() {
-    this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
+    this.globalServiceParam.navigateToEmployeesPage();
   }
 
   ok() {
@@ -33,7 +31,7 @@ export class AlertConfirmDialogComponent implements OnInit {
       next: (res) => {
         this.alertService.showAlertSuccess(appMessagesAlert.SUCESS_DELETED_DATA_EMPLOYEES);
         this.dialog.close();
-        this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
+        this.globalServiceParam.navigateToEmployeesPage();
       }, error: (err) => {
         alert(appMessagesAlert.ERROR_WHILE_DELETING_THE_DATA);
       }

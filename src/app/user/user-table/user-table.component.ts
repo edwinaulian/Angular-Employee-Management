@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { appGlobalConstants, appMessagesAlert, appNavigateTo } from 'src/app/common/actionType/global-constant';
 import { AlertConfirmDialogComponent } from 'src/app/common/component/alert-confirm.component';
+import { GlobalServiceParam } from 'src/app/common/service/global-param-service';
 import { AddUserDialogComponent } from '../dialog/dialog-user.component';
 import { UserService } from '../user-service';
 import { UserParamService } from '../user-service-param';
@@ -29,6 +30,7 @@ export class UserTableComponent implements OnInit {
     private userServie: UserService,
     private router: Router,
     private userParamService: UserParamService,
+    private globalServiceParam: GlobalServiceParam,
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class UserTableComponent implements OnInit {
     }).afterClosed().subscribe(value => {
       if (value === "edit") {
         this.getAllEmployee();
-        this.router.navigate([appNavigateTo.EMPLOYEES_PAGE]);
+        this.globalServiceParam.navigateToEmployeesPage();
       }
     })
   }

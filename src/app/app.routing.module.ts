@@ -22,6 +22,5 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [],
-
 })
 export class AppRoutingModule { }

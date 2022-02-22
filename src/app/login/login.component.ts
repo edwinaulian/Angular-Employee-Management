@@ -4,7 +4,8 @@ import { AuthService } from '../common/service/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../common/service/alert-service';
-import { appGlobalConstants, appNavigateTo } from '../common/actionType/global-constant';
+import { appGlobalConstants } from '../common/actionType/global-constant';
+import { GlobalServiceParam } from '../common/service/global-param-service';
 import * as _ from 'lodash';
 
 @Component({
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     private authService: AuthService,
+    private globalServiceParam: GlobalServiceParam,
     private mediaObserver: MediaObserver) { }
 
   showSpinner: boolean;
@@ -47,14 +49,18 @@ export class LoginComponent implements OnInit {
 
   postLogin(loginForm) {
     this.authService.login(loginForm.value.username, loginForm.value.password).subscribe(data => {
-      if (!_.isEqual(this.retUrl, appGlobalConstants.NULL_VALUE)) {
-        this.router.navigate([this.retUrl]);
-        this.alertService.showAlertSuccess(`Hello ${data}, Wellcome to EmpMa`);
-        localStorage.setItem("login", data);
-      } else {
-        this.router.navigate([appNavigateTo.LOGIN_PAGE]);
-      }
+      !_.isEqual(this.retUrl, appGlobalConstants.NULL_VALUE) ? this.loginSucces(data) : this.loginFailed();
     });
+  }
+
+  loginSucces(data) {
+    this.router.navigate([this.retUrl]);
+    this.alertService.showAlertSuccess(`Hello ${data}, Wellcome to EmpMa`);
+    localStorage.setItem("login", data);
+  }
+
+  loginFailed() {
+    this.globalServiceParam.navigateToLoginPage();
   }
 
 }

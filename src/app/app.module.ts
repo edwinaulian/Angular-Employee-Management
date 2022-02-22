@@ -39,6 +39,7 @@ import { ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher } 
 import { AuthService } from './common/service/auth.service';
 import { AuthGuardService } from './common/service/auth-guard.services';
 import { AlertService } from './common/service/alert-service';
+import { GlobalServiceParam } from './common/service/global-param-service';
 
 //routing
 import { AppRoutingModule } from './app.routing.module';
@@ -100,7 +101,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
   ],
   providers: [
-    AuthGuardService, AuthService, AlertService,
+    AuthGuardService, AuthService, AlertService, GlobalServiceParam,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
   ],
   bootstrap: [AppComponent]

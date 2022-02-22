@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../common/service/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
-import { appNavigateTo } from '../common/actionType/global-constant';
+import { GlobalServiceParam } from '../common/service/global-param-service';
 
 @Component({
   selector: 'app-contact',
@@ -20,7 +19,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   constructor(
     private mediaObserver: MediaObserver,
-    private router: Router, 
+    private globalServiceParam: GlobalServiceParam,
     private authService: AuthService) { }
 
   ngOnInit() {
@@ -38,7 +37,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logoutUser();
-    this.router.navigate([appNavigateTo.LOGIN_PAGE]);
+    this.globalServiceParam.navigateToLoginPage();
   }
 
 }
