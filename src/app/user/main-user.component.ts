@@ -15,9 +15,7 @@ export class UserComponent implements OnInit, OnDestroy {
   deviceSm: boolean;
   deviceMd: boolean;
 
-  constructor(
-    public mediaObserver: MediaObserver
-  ) { }
+  constructor(public mediaObserver: MediaObserver) { }
 
   ngOnInit() {
     this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {

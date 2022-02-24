@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../common/service/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
-import { GlobalServiceParam } from '../common/service/global-param-service';
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -17,27 +14,19 @@ export class ContactComponent implements OnInit, OnDestroy {
   deviceSm: boolean;
   deviceMd: boolean;
 
-  constructor(
-    private mediaObserver: MediaObserver,
-    private globalServiceParam: GlobalServiceParam,
-    private authService: AuthService) { }
+  constructor(private mediaObserver: MediaObserver) { }
 
   ngOnInit() {
     this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
       this.deviceLg = result.mqAlias === 'lg' ? true : false;
-      this.deviceXs = result.mediaQuery === "screen and (min-width: 0px) and (max-width: 599.98px)";
       this.deviceSm = result.mqAlias === 'sm' ? true : false;
       this.deviceMd = result.mqAlias === 'md' ? true : false;
+      this.deviceXs = result.mediaQuery === "screen and (min-width: 0px) and (max-width: 599.98px)";
     })
   }
 
   ngOnDestroy() {
     this.mediaSub.unsubscribe();
-  }
-
-  logout() {
-    this.authService.logoutUser();
-    this.globalServiceParam.navigateToLoginPage();
   }
 
 }

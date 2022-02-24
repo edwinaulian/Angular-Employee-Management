@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { appGlobalConstants, appMessagesAlert, appNavigateTo } from 'src/app/common/actionType/global-constant';
 import { AlertConfirmDialogComponent } from 'src/app/common/component/alert-confirm.component';
+import { AlertService } from 'src/app/common/service/alert-service';
 import { GlobalServiceParam } from 'src/app/common/service/global-param-service';
 import { AddUserDialogComponent } from '../dialog/dialog-user.component';
 import { UserService } from '../user-service';
@@ -31,6 +32,7 @@ export class UserTableComponent implements OnInit {
     private router: Router,
     private userParamService: UserParamService,
     private globalServiceParam: GlobalServiceParam,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -76,17 +78,17 @@ export class UserTableComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
         this.getFilterValue(res);
       }, error: (err) => {
-        alert(appMessagesAlert.ERROR_WHILE_FETCHING_DATA);
+        this.errorInfoFetchingData();
       }
     })
   }
- 
-  getByFilter(value) {
-    this.userServie.getDataEmployeeByFilter(value).subscribe({
+
+  getByFilter(filterValue) {
+    this.userServie.getDataEmployeeByFilter(filterValue).subscribe({
       next: (res) => {
         this.getFilterValue(res);
       }, error: (err) => {
-        alert(appMessagesAlert.ERROR_WHILE_FETCHING_DATA);
+        this.errorInfoFetchingData();
       }
     })
   }
@@ -96,9 +98,13 @@ export class UserTableComponent implements OnInit {
       next: (res) => {
         this.getFilterValue(res);
       }, error: (err) => {
-        alert(appMessagesAlert.ERROR_WHILE_FETCHING_DATA);
+        this.errorInfoFetchingData();
       }
     })
+  }
+
+  errorInfoFetchingData() {
+    this.alertService.showAlertError(appMessagesAlert.ERROR_WHILE_FETCHING_DATA);
   }
 
   getFilterValue(res) {

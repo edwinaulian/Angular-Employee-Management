@@ -1295,6 +1295,18 @@
       "group": "Marketing Credit",
       "description": "hello decalpiko",
       "id": 113
+    },
+    {
+      "username": "read",
+      "firstName": "read",
+      "lastName": "nos",
+      "email": "read@gmail.com",
+      "birthDate": "2022-02-07T17:00:00.000Z",
+      "basicSalary": 23000000,
+      "status": "Single",
+      "group": "IT Departement",
+      "description": "yes",
+      "id": 114
     }
   ],
   "comments": [

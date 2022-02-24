@@ -2,8 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { appGlobalConstants, appMessagesAlert, appNavigateTo } from 'src/app/common/actionType/global-constant';
+import { appGlobalConstants, appMessagesAlert } from 'src/app/common/actionType/global-constant';
 import { AlertService } from 'src/app/common/service/alert-service';
 import { GlobalServiceParam } from 'src/app/common/service/global-param-service';
 import { UserService } from '../user-service';
@@ -32,7 +31,6 @@ export class AddUserDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public editData: any,
     private dialog: MatDialogRef<any>,
-    private router: Router,
     private formBuilder: FormBuilder,
     private userServices: UserService,
     private alertService: AlertService,
@@ -82,44 +80,39 @@ export class AddUserDialogComponent implements OnInit {
 
   onSave() {
     const rawData = this.employeesForm.getRawValue();
-    if (!this.editData) {
-      if (this.employeesForm.valid) {
-        this.userServices.postNewDataEmployee(rawData).subscribe({
-          next: (res) => {
-            this.showAlert(appMessagesAlert.SUCCESS_ADD_DATA_EMPLOYEES);
-            this.resetDataValue();
-            this.globalServiceParam.navigateToEmployeesPage();
-          }, error: () => {
-            alert(appMessagesAlert.ERROR_SAVE_DATA_EMPLOYEES);
-          }
-        })
-      } else {
-        this.alertService.showAlertInfo(appMessagesAlert.ALL_FIELD_HAS_BEEN_REQUIRED);
-      }
-    } else {
-      this.editDataEmployee(rawData);
-    }
+    !this.editData ? this.addDataEmployee(rawData) : this.editDataEmployee(rawData);
   }
 
-  showAlert(messages) {
-    this.alertService.showAlertSuccess(messages);
+  addDataEmployee(rawData) {
+    if (this.employeesForm.valid) {
+      this.userServices.postNewDataEmployee(rawData).subscribe({
+        next: (res) => {
+          this.alertService.showAlertSuccess(appMessagesAlert.SUCCESS_ADD_DATA_EMPLOYEES);
+          this.resetDataValueandBackToEmployeesPage();
+        }, error: () => {
+          this.alertService.showAlertError(appMessagesAlert.ERROR_SAVE_DATA_EMPLOYEES);
+        }
+      })
+    } else {
+      this.alertService.showAlertInfo(appMessagesAlert.ALL_FIELD_HAS_BEEN_REQUIRED);
+    }
   }
 
   editDataEmployee(rawData) {
     this.userServices.editDataEmployee(rawData, this.editData.id).subscribe({
       next: (res) => {
-        this.showAlert(appMessagesAlert.SUCCESS_EDIT_DATE_EMPLOYEES);
-        this.resetDataValue();
-        this.globalServiceParam.navigateToEmployeesPage();
+        this.alertService.showAlertSuccess(appMessagesAlert.SUCCESS_EDIT_DATE_EMPLOYEES);
+        this.resetDataValueandBackToEmployeesPage();
       }, error: () => {
-        alert(appMessagesAlert.ERROR_EDIT_DATA_EMPLOYEES);
+        this.alertService.showAlertError(appMessagesAlert.ERROR_EDIT_DATA_EMPLOYEES);
       }
     })
   }
 
-  resetDataValue() {
+  resetDataValueandBackToEmployeesPage() {
     this.employeesForm.reset();
     !this.editData ? this.dialog.close("save") : this.dialog.close("edit");
+    this.globalServiceParam.navigateToEmployeesPage();
   }
 
   onCancel() {
