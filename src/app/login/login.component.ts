@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../common/service/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
-import { AlertService } from '../common/service/alert-service';
-import { appGlobalConstants } from '../common/actionType/global-constant';
-import { GlobalServiceParam } from '../common/service/global-param-service';
 import * as _ from 'lodash';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,19 +10,13 @@ import * as _ from 'lodash';
 })
 
 export class LoginComponent implements OnInit {
-  constructor(
-    private alertService: AlertService,
-    private router: Router,
-    private authService: AuthService,
-    private globalServiceParam: GlobalServiceParam,
-    private mediaObserver: MediaObserver) { }
+  constructor(private mediaObserver: MediaObserver, private authService: AuthService) { }
 
   showSpinner: boolean;
   mediaSub: Subscription;
   deviceLg: boolean;
   deviceXs: boolean;
   errorMesssages = false;
-  retUrl: string = "employees";
   username: string;
   password: string;
 
@@ -47,20 +36,7 @@ export class LoginComponent implements OnInit {
     this.errorMesssages = false;
   }
 
-  postLogin(loginForm) {
-    this.authService.login(loginForm.value.username, loginForm.value.password).subscribe(data => {
-      !_.isEqual(this.retUrl, appGlobalConstants.NULL_VALUE) ? this.loginSucces(data) : this.loginFailed();
-    });
+  postLogin(loginForm): void {
+    this.authService.login(loginForm.value);
   }
-
-  loginSucces(data) {
-    this.router.navigate([this.retUrl]);
-    this.alertService.showAlertSuccess(`Hello ${data}, Wellcome to EmpMa`);
-    localStorage.setItem("login", data);
-  }
-
-  loginFailed() {
-    this.globalServiceParam.navigateToLoginPage();
-  }
-
 }

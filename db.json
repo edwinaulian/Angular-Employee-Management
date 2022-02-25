@@ -1309,11 +1309,46 @@
       "id": 114
     }
   ],
-  "comments": [
+  "users": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "username": "edwin",
+      "password": "edwin",
+      "id": 2
+    },
+    {
+      "username": "ariel",
+      "password": "ariel",
+      "id": 3
+    },
+    {
+      "username": "lop",
+      "password": "lop",
+      "id": 4
+    },
+    {
+      "username": "rolm",
+      "password": "rolm",
+      "id": 5
+    },
+    {
+      "username": "anna",
+      "password": "anna",
+      "id": 6
+    },
+    {
+      "username": "kinomo",
+      "password": "knomo",
+      "id": 7
+    },
+    {
+      "username": "willy",
+      "password": "willy",
+      "id": 8
     }
   ],
   "profile": {

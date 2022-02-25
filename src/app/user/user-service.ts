@@ -8,6 +8,7 @@ import { Injectable } from "@angular/core";
 export class UserService {
 
     baseUrl = 'http://localhost:3001/employees/';
+    baseUrlUsers = 'http://localhost:3001/users/';
 
     constructor(
         private http: HttpClient
@@ -31,5 +32,9 @@ export class UserService {
 
     deleteDataEmployee(id: number) {
         return this.http.delete<any>(this.baseUrl + id);
+    }
+
+    postDataUser(data: any) {
+        return this.http.post<any>(this.baseUrlUsers, data);
     }
 }
