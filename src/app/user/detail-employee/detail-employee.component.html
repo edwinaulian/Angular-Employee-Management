@@ -1,20 +1,51 @@
 <app-header [deviceLg]="deviceLg" [deviceXs]="deviceXs" [deviceSm]="deviceSm" [deviceMd]="deviceMd"></app-header>
 <main>
-    <mat-card class="main-card">
         <mat-card-header class="edwin-header">Detail Employee</mat-card-header>
         <mat-card-content>
-            <mat-card>User Name     : {{ detailDataEmployee?.username }}</mat-card>
-            <mat-card>First Name    : {{ detailDataEmployee?.firstName }}</mat-card>
-            <mat-card>Last Name     : {{ detailDataEmployee?.lastName }}</mat-card>
-            <mat-card>Email         : {{ detailDataEmployee?.email }}</mat-card>
-            <mat-card>Birth Date    : {{ detailDataEmployee?.birthDate | date }}</mat-card>
-            <mat-card>Basic Salary  : {{ detailDataEmployee?.basicSalary | currency:"IDR":"Rp" }}</mat-card>
-            <mat-card>Status        : {{ detailDataEmployee?.status }}</mat-card>
-            <mat-card>Group         : {{ detailDataEmployee?.group }}</mat-card>
-            <mat-card>Description   : {{ detailDataEmployee?.description }}</mat-card>
+            <table>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>User Name     : </td>
+                        <td>{{ detailDataEmployee?.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>First Name    : </td>
+                        <td>{{ detailDataEmployee?.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name     : </td>
+                        <td>{{ detailDataEmployee?.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email         : </td>
+                        <td>{{ detailDataEmployee?.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Birth Date    : </td>
+                        <td>{{ detailDataEmployee?.birthDate | date }}</td>
+                    </tr>
+                    <tr>
+                        <td>Basic Salary  : </td>
+                        <td>{{ detailDataEmployee?.basicSalary | currency:"IDR":"Rp" }}</td>
+                    </tr>
+                    <tr>
+                        <td>Status        : </td>
+                        <td>{{ detailDataEmployee?.status }}</td>
+                    </tr>
+                    <tr>
+                        <td>Group         : </td>
+                        <td>{{ detailDataEmployee?.group }}</td>
+                    </tr>                       
+                    <tr>
+                        <td>Description   : </td>
+                        <td>{{ detailDataEmployee?.description }}</td>
+                    </tr>
+            </table>
         </mat-card-content>
         <mat-card-actions [align]="'end'">
             <button mat-raised-button color="primary" (click)="onBack()">Ok</button>
         </mat-card-actions>
-    </mat-card>
 </main>

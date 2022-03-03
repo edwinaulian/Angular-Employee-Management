@@ -1307,6 +1307,18 @@
       "group": "IT Departement",
       "description": "yes",
       "id": 114
+    },
+    {
+      "username": "Dinar",
+      "firstName": "Dinar",
+      "lastName": "Aulia",
+      "email": "dinaraulia@gmail.com",
+      "birthDate": "2022-02-14T17:00:00.000Z",
+      "basicSalary": 1000000,
+      "status": "Single",
+      "group": "Audit Departement",
+      "description": "hihi",
+      "id": 115
     }
   ],
   "users": [
@@ -1349,6 +1361,21 @@
       "username": "willy",
       "password": "willy",
       "id": 8
+    },
+    {
+      "username": "basari",
+      "password": "basari",
+      "id": 9
+    },
+    {
+      "username": "lifa",
+      "password": "lifa",
+      "id": 10
+    },
+    {
+      "username": "norman",
+      "password": "norman",
+      "id": 11
     }
   ],
   "profile": {
