@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import { GlobalServiceParam } from 'src/app/common/service/global-param-service';
+import { UserParamService } from './../user-service-param';
 
 @Component({
   selector: 'app-detail-dialog',
@@ -19,9 +19,9 @@ export class DetailEmployeeComponent implements OnInit {
   deviceMd: boolean;
 
   constructor(
-    private router: Router,
     public mediaObserver: MediaObserver,
     private globalServiceParam: GlobalServiceParam,
+    private userParamService: UserParamService,
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +40,7 @@ export class DetailEmployeeComponent implements OnInit {
   }
 
   onBack() {
+    this.userParamService.isFilter = false;
     this.globalServiceParam.navigateToEmployeesPage();
   }
 

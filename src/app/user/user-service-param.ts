@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 export class UserParamService {
     dataEmployee: any;
     filterValue: any;
+    isFilter: boolean;
     mediaSub: Subscription;
 
     constructor() { }

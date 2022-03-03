@@ -36,7 +36,7 @@ export class UserTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userParamService.isNotExsist(this.userParamService.filterValue) ? this.getAllEmployee() : this.getByFilter(this.userParamService.filterValue);
+    this.userParamService.isNotExsist(this.userParamService.filterValue) ? this.getAllEmployee() : this.getByFilter(this.userParamService.filterValue, this.userParamService.isFilter);
   }
 
   refresh() {
@@ -72,20 +72,18 @@ export class UserTableComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    const isFilter = true;
     this.userParamService.filterValue = filterValue;
-    this.userServie.getDataEmployeeByFilter(filterValue).subscribe({
-      next: (res) => {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
-        this.getFilterValue(res);
-      }, error: (err) => {
-        this.errorInfoFetchingData();
-      }
-    })
+    this.userParamService.isFilter = isFilter;
+    this.getByFilter(filterValue, isFilter);
   }
 
-  getByFilter(filterValue) {
+  getByFilter(filterValue, isFilter) {
     this.userServie.getDataEmployeeByFilter(filterValue).subscribe({
       next: (res) => {
+        if (isFilter) {
+          this.dataSource.filter = filterValue.trim().toLowerCase();
+        }
         this.getFilterValue(res);
       }, error: (err) => {
         this.errorInfoFetchingData();
